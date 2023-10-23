@@ -1,3 +1,4 @@
+-- sol1
 select round(sum(tiv_2016), 2) as tiv_2016
 from insurance
 where tiv_2015 IN (
@@ -11,26 +12,14 @@ and (lat, lon) NOT IN (
     group by lat, lon
     having count(*) > 1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# select round(sum(tiv_2016), 2) as tiv_2016
-# from insurance i1
-# where tiv_2015 in (
-#     select tiv_2015
-#     from insurance i2
-#     where i2.pid != i1.pid)
-# and (lat, lon) not in (
-#     select lat, lon
-#     from insurance i3
-#     where i3.pid != i1.pid)
+-- sol2
+select round(sum(tiv_2016), 2) as tiv_2016
+from insurance i1
+where tiv_2015 in (
+    select tiv_2015
+    from insurance i2
+    where i2.pid != i1.pid)
+and (lat, lon) not in (
+    select lat, lon
+    from insurance i3
+    where i3.pid != i1.pid)
