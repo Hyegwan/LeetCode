@@ -1,3 +1,4 @@
+-- sol1 
 select product_id
      , year as 'first_year'
      , quantity
@@ -8,3 +9,16 @@ from(
     from sales) s
 where r=1
 
+-- sol2
+select product_id
+     , year as first_year
+     , quantity
+     , price
+from sales
+where (product_id, year) in (
+    select product_id
+         , min(year)
+    from sales
+    group by product_id)
+
+# sol1 is faster than sol2
