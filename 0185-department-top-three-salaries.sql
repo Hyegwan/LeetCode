@@ -12,7 +12,7 @@ where ranking < 4
 
 
 
-# 이런 방법도 있다
+# 이런 방법도 있다 (상관서브쿼리)
 where  3 > (select count(distinct e2.Salary)
              from  Employee e2
              where e2.Salary > e1.Salary
